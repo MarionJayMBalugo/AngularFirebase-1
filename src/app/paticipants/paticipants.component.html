@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="card" style="background-color:white">
+        <div class="card-header" style="justify-content:center;display:flex;">
+            <h1>{{event?.name}}</h1>
+        </div>
+        <div class="card-body">
+            <h5>Event Category: {{event?.category}}</h5>
+            <hr>
+            <h5 *ngIf="event.speaker">Event Speaker: {{event?.speaker}}</h5>
+            <hr>
+            <h5 *ngIf="event.emcee">Event Emcee: {{event?.emcee}}</h5>
+            <hr>
+            <h5>Event Time: {{event?.time}}</h5>
+            <hr>
+            <h5>Event Date: {{event?.date}}</h5>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="sendId(event)">View Participants</button>
+
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+    <h2>{{event.name}}</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fullname</th>
+                <th>Position</th>
+                <th>Company/Organization</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let each of event.participants">
+                <td>{{each.fullName}}</td>
+                <td>{{each.position}}</td>
+                <td>{{each.company}}</td>
+            </tr>
+            <!-- <tr *ngFor="let each of participants">
+                <td>{{event.fullName}}</td>
+                <td>{{event.position}}</td>
+                <td>{{event.company}}</td>
+            </tr> -->
+        </tbody>
+    </table>
+    <button class="btn btn-success" (click)="return()">Back</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="open()">Join</button>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal" *ngIf="showModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Participant</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" #modal>
+                <app-form [event]="event"></app-form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>

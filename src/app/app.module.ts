@@ -11,6 +11,11 @@ import { ParticipantListComponent } from './participant-list/participant-list.co
 import { FormComponent } from './form/form.component';
 import { AddEventFormComponent } from './add-event-form/add-event-form.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @NgModule({
   declarations: [
@@ -27,10 +32,12 @@ import { AddEventFormComponent } from './add-event-form/add-event-form.component
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
     
     
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

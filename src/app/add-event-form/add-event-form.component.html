@@ -1,27 +1,73 @@
-<form>
+<form [formGroup]="eventForm" (ngSubmit)="submitForm(eventForm.value)">
     <div class="form-row">
         <div class="col">
-            <input type="text" class="form-control" id="eventname" placeholder="Event Name" name="eventname">
+            <input type="text" class="form-control" id="eventname" placeholder="Event Name" formControlName="name" name="eventname" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+            <div *ngIf="submitted && f.name.errors" class="alert alert-danger">
+                <div *ngIf="f.name.errors.required">Event Name is required</div>
+            </div>
         </div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="Event Category" name="eventcateg">
+            <input type="text" class="form-control" placeholder="Event Category" formControlName="category" name="eventcateg" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+            <div *ngIf="submitted && f.category.errors" class="alert alert-danger">
+                <div *ngIf="f.category.errors.required">Event Category is required</div>
+            </div>
         </div>
     </div><br>
     <div class="form-row">
         <div class="col">
-            <input type="text" class="form-control" id="eventspeak" placeholder="Event Speaker" name="eventspeak">
+            <input type="text" class="form-control" id="eventspeak" placeholder="Event Speaker" formControlName="speaker" name="eventspeak" [ngClass]="{ 'is-invalid': submitted && f.speaker.errors }">
+            <div *ngIf="submitted && f.speaker.errors" class="alert alert-danger">
+                <div *ngIf="f.speaker.errors.required">Event Speaker is required</div>
+            </div>
         </div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="Event Emcee" name="emcee">
+            <input type="text" class="form-control" placeholder="Event Emcee" formControlName="emcee" name="emcee" [ngClass]="{ 'is-invalid': submitted && f.emcee.errors }">
+            <div *ngIf="submitted && f.emcee.errors" class="alert alert-danger">
+                <div *ngIf="f.emcee.errors.required">Event Emcee is required</div>
+            </div>
         </div>
     </div><br>
     <div class="form-row">
         <div class="col">
-            <input type="date" class="form-control" id="date" placeholder="Date" name="date">
+            <input type="date" class="form-control" id="date" placeholder="Date" formControlName="date" name="date" [ngClass]="{ 'is-invalid': submitted && f.date.errors }">
+            <div *ngIf="submitted && f.date.errors" class="alert alert-danger">
+                <div *ngIf="f.date.errors.required">Event Date is required</div>
+            </div>
         </div>
         <div class="col">
-            <input type="time" class="form-control" placeholder="Time" name="emcee">
+            <input type="time" class="form-control" placeholder="Time" formControlName="time" name="time" [ngClass]="{ 'is-invalid': submitted && f.time.errors }">
+            <div *ngIf="submitted && f.time.errors" class="alert alert-danger">
+                <div *ngIf="f.time.errors.required">Event Time is required</div>
+            </div>
         </div>
     </div><br>
+    <div class="form-row">
+        <input type="string" class="form-control" placeholder="Duration" formControlName="duration" name="duration" [ngClass]="{ 'is-invalid': submitted && f.duration.errors }">
+            <div *ngIf="submitted && f.duration.errors" class="alert alert-danger">
+                <div *ngIf="f.duration.errors.required">Event Time is required</div>
+            </div>
+    </div><br>
+    <div class="form-row">
+        <div formGroupName="venue" class="form-row">
+            <div class="col">
+            <input type="text" class="form-control" placeholder="Address" formControlName="address" name="address">
+            
+            </div>
+             <div class="col">
+            <input type="text" class="form-control" placeholder="Building" formControlName="building" name="building">
+            
+            </div>
+             <div class="col">
+            <input type="text" class="form-control" placeholder="Room" formControlName="room" name="room">
+            
+            </div>
+        </div>
+    </div><br>
+    <div class="form-row">
+        <input type="text" class="form-control" placeholder="Description" formControlName="description" name="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+            <div *ngIf="submitted && f.description.errors" class="alert alert-danger">
+                <div *ngIf="f.description.errors.required">Event Time is required</div>
+            </div>
+    </div>
     <button class="btn btn-primary">AddEvent</button>
 </form>

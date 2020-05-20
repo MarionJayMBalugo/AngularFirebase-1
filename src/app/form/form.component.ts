@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EventsService } from "../Services/events.service";
 
 
 @Component({
@@ -11,12 +12,13 @@ export class FormComponent implements OnInit {
   @Input() event: any;
   partForm: FormGroup;
   private formSubmitAttempt: boolean;
-  submitted = false;
+  submitted = false
 
   get f() { return this.partForm.controls; }
 
   constructor(
     private fb: FormBuilder,
+    private eventService:EventsService
   ) { }
 
   ngOnInit() {
@@ -27,29 +29,21 @@ export class FormComponent implements OnInit {
     });
   }
 
-  isFieldInvalid(field: string) { 
+  isFieldInvalid(field: string) {
     return (
       (!this.partForm.get(field).valid && this.partForm.get(field).touched) ||
       (this.partForm.get(field).untouched && this.formSubmitAttempt)
     );
   }
 
- 
 
   submitForm(data){
       this.submitted = true;
-      if(this.partForm.valid){
-        console.log(data)
-        this.event.participants.push(data)
-        // this.event.map(events=>{
-        //   if(events.id === data.id){
-        //     events.participants.push(data)
-        //   }
-        // })
+      if (this.partForm.valid){
+        this.eventService.addParticipants(data)
       }
-      this.formSubmitAttempt = true; 
+      this.formSubmitAttempt = true;
       this.resetForm()
-      // console.log(this.event)
   }
 
   resetForm(){

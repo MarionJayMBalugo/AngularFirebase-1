@@ -26,7 +26,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <app-add-event-form></app-add-event-form>
+                <app-add-event-form (event)="addEvent($event)"></app-add-event-form>
             </div>
 
             <!-- Modal footer -->

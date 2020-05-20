@@ -5,7 +5,6 @@
 
     <div *ngFor="let event of events" class="jumbotron"><br>
         <app-paticipants [event]="event" (id)="getID($event)"></app-paticipants>
-
     </div>
 </div>
 <div class="container" *ngIf="!isShowList">

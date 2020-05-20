@@ -14,7 +14,7 @@ export class PaticipantsComponent implements OnInit {
     console.log(this.event)
   }
 
-  sendId(data:any){
+  sendId(data:number){
     alert("click")
     this.id.emit(data)
   }

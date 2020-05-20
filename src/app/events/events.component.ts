@@ -23,7 +23,7 @@ export class EventsComponent implements OnInit {
     alert("click")
   }
 
-  getID(data:any){
+  getID(data:number){
       this.event = this.eventService.getID(data)
       this.isShowList = false
   }

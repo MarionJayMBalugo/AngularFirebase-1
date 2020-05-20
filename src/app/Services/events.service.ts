@@ -24,9 +24,9 @@ export class EventsService {
 
   addParticipants(participant:Participants){
         this.events.map(event=>{
-          // if(event.id === this.events.id){
+          if(event.id === this.event.id){
             event.participants.push(participant);
-          // }
+          }
         })
         return this.event
   }

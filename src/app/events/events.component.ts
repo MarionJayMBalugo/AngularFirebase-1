@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Events } from "../Services/events";
+import { Events, Participants } from "../Services/events";
 import { EventsService } from "../Services/events.service";
 import { Subscription } from "rxjs";
+import { log } from 'util';
 
 @Component({
   selector: 'app-events',
@@ -37,8 +38,17 @@ export class EventsComponent implements OnInit,OnDestroy {
         this.isShowList = false
       }
     })
-      // this.event = this.eventService.getID(data)
       
+  }
+
+  addParticipants(participant:Participants){
+    this.events.map(res=>{
+      if(res.id === this.event.id){
+        res.participants.push(participant)
+        this.eventService.updateEvent(res)
+      }
+    })
+    
   }
 
   addEvent(event:Events){

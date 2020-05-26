@@ -8,7 +8,7 @@
     </div>
 </div>
 <div class="container" *ngIf="!isShowList">
-    <app-participant-list [event]="event" (isHideList)="backtToList($event)"></app-participant-list>
+    <app-participant-list [event]="event" (isHideList)="backtToList()" (participants)="addParticipants($event)"></app-participant-list>
 </div>
 <!-- </div> -->
 

@@ -48,10 +48,8 @@ export class AddEventFormComponent implements OnInit {
 
   submitForm(data){
     this.submitted = true
-    // if(this.eventForm.valid){
       this.event.emit(data)
       console.log(data);
-    // }
     this.formSubmitAttempt = true
     this.eventForm.reset()
   }

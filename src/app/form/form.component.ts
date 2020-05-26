@@ -40,7 +40,7 @@ export class FormComponent implements OnInit {
   submitForm(data){
       this.submitted = true;
       if (this.partForm.valid){
-        this.eventService.addParticipants(data)
+        // this.eventService.addParticipants(data)
       }
       this.formSubmitAttempt = true;
       this.resetForm()

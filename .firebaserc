@@ -7,5 +7,8 @@
         ]
       }
     }
+  },
+  "projects": {
+    "default": "angularfirebase-1fe1d"
   }
 }

@@ -1,26 +1,30 @@
-<div class="container">
+<div class="jumbotron">
     <h2 class="title">{{event.name}}</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Fullname</th>
-                <th>Position</th>
-                <th>Company/Organization</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let each of event.participants">
-                <td>{{each.fullName}}</td>
-                <td>{{each.position}}</td>
-                <td>{{each.company}}</td>
-            </tr>
-            <!-- <tr *ngFor="let each of participants">
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Fullname</th>
+                    <th>Position</th>
+                    <th>Company/Organization</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let each of event.participants">
+                    <td>{{each.fullName}}</td>
+                    <td>{{each.position}}</td>
+                    <td>{{each.company}}</td>
+                    <td><button class="btn btn-outline-danger" (click)="deletePart(each)">Delete</button></td>
+                </tr>
+                <!-- <tr *ngFor="let each of participants">
                 <td>{{event.fullName}}</td>
                 <td>{{event.position}}</td>
                 <td>{{event.company}}</td>
             </tr> -->
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
     <button class="btn btn-success" (click)="return()">Back</button>
     <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Join</button>
 </div>
@@ -60,8 +64,8 @@
                         <div *ngIf="submitted && f.company.errors" class="alert alert-danger">
                             <div *ngIf="f.company.errors.required">Companyis required</div>
                         </div>
-                    </div>
-                    <button class="btn btn-success">Add</button>
+                    </div><br>
+                    <button class="btn btn-outline-success btn-block">Add</button>
                 </form>
             </div>
 

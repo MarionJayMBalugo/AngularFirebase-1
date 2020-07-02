@@ -12,6 +12,7 @@ export class ParticipantListComponent implements OnInit {
   showModal = false
   @Output() isHideList = new EventEmitter();
   @Output() participants = new EventEmitter();
+  @Output() delete = new EventEmitter();
   @Input() event:any;
   events: any;
   partForm: FormGroup;
@@ -63,6 +64,10 @@ export class ParticipantListComponent implements OnInit {
             event.push(data)
           }
       })
+  }
+
+  deletePart(value){
+    this.delete.emit(value)
   }
 
 }

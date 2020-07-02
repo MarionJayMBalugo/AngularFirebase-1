@@ -45,6 +45,10 @@ export class EventsService {
     return this.firestore.collection('events').snapshotChanges();
   }
 
+  deleteEvent(data){
+    return this.firestore.collection('events').doc(data).delete()
+  }
+
   addEvent(event:Events){
     this.eventCollection.ref.get().then(res=>{
       console.log(res.size);

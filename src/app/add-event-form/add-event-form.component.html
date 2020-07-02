@@ -43,31 +43,31 @@
     </div><br>
     <div class="form-row">
         <input type="string" class="form-control" placeholder="Duration" formControlName="duration" name="duration" [ngClass]="{ 'is-invalid': submitted && f.duration.errors }">
-            <div *ngIf="submitted && f.duration.errors" class="alert alert-danger">
-                <div *ngIf="f.duration.errors.required">Event Time is required</div>
-            </div>
+        <div *ngIf="submitted && f.duration.errors" class="alert alert-danger">
+            <div *ngIf="f.duration.errors.required">Event Time is required</div>
+        </div>
     </div><br>
     <div class="form-row">
         <div formGroupName="venue" class="form-row">
             <div class="col">
-            <input type="text" class="form-control" placeholder="Address" formControlName="address" name="address">
-            
+                <input type="text" class="form-control" placeholder="Address" formControlName="address" name="address">
+
             </div>
-             <div class="col">
-            <input type="text" class="form-control" placeholder="Building" formControlName="building" name="building">
-            
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Building" formControlName="building" name="building">
+
             </div>
-             <div class="col">
-            <input type="text" class="form-control" placeholder="Room" formControlName="room" name="room">
-            
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Room" formControlName="room" name="room">
+
             </div>
         </div>
     </div><br>
     <div class="form-row">
         <input type="text" class="form-control" placeholder="Description" formControlName="description" name="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
-            <div *ngIf="submitted && f.description.errors" class="alert alert-danger">
-                <div *ngIf="f.description.errors.required">Event Time is required</div>
-            </div>
-    </div>
-    <button class="btn btn-primary">AddEvent</button>
+        <div *ngIf="submitted && f.description.errors" class="alert alert-danger">
+            <div *ngIf="f.description.errors.required">Event Time is required</div>
+        </div>
+    </div><br>
+    <button class="btn btn-outline-primary btn-block">AddEvent</button>
 </form>

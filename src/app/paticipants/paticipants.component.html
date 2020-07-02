@@ -17,5 +17,9 @@
             <h5>Event Description: {{event?.description}}</h5>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="sendId(event.id)">View Participants</button>
+    <button type="button" class="btn btn-outline-primary" (click)="sendId(event.id)">View Participants</button>
+    <div class="btn-group" style="float:right">
+        <!-- <button type="button" class="btn btn-outline-success" (click)="editEvent(event)">Edit Event</button> -->
+        <button type="button" class="btn btn-outline-danger" (click)="deleteEvent(event)">Delete Event</button>
+    </div>
 </div>

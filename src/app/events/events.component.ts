@@ -27,9 +27,7 @@ export class EventsComponent implements OnInit,OnDestroy {
     this.getEventSubscription.unsubscribe();
   }
 
-  alerts(){
-    alert("click")
-  }
+
 
   getID(data:number){
     this.events.map(event=>{
@@ -58,6 +56,33 @@ export class EventsComponent implements OnInit,OnDestroy {
 
   backtToList(){
     this.isShowList = true;
+  }
+
+  // editEvent(data){
+  //     console.log(data); 
+  // }
+
+  deleteEvent(data){
+    const id = this.events.indexOf(data)
+    console.log(id);
+    if(confirm("Are You Sure You Want to Delete this Event?")){
+      this.eventService.deleteEvent(id)
+    }
+    else{
+      alert("Delete is Cancelled")
+    }
+    // this.events.splice(data.id)
+  }
+
+  deleteParticipants(value){
+    const index = this.event.participants.indexOf(value)
+    if(confirm("Are You Sure You Want to Delete this Participant?")){
+      this.event.participants.splice(index)
+      this.eventService.updateEvent(this.event)
+    }else{
+      alert("Delete is Cancelled")
+    }
+    
   }
 }
 

@@ -8,6 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PaticipantsComponent implements OnInit {
   @Input() event:any;
   @Output() id =new EventEmitter();
+  // @Output() edit = new EventEmitter();
+  @Output() delete = new EventEmitter();
   colors = ""
 
   constructor() { }
@@ -27,8 +29,15 @@ export class PaticipantsComponent implements OnInit {
   }
 
   sendId(data:number){
-    alert("click")
     this.id.emit(data)
+  }
+
+  // editEvent(data){
+  //   this.edit.emit(data)
+  // }
+
+  deleteEvent(data){
+    this.delete.emit(data)
   }
 }
 

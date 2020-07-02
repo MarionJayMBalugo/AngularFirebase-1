@@ -1,14 +1,14 @@
 <!-- <div class="container"> -->
 <div class="container" *ngIf="isShowList">
-    <button data-toggle="modal" data-target="#myModal" class="btn btn-primary" id="addEventBtn" style="float:right" (click)=alerts()>Add Event</button>
+    <button data-toggle="modal" data-target="#myModal" class="btn btn-primary" id="addEventBtn" style="float:right">Add Event</button>
     <h1>PN Events</h1>
 
     <div *ngFor="let event of events" class="jumbotron"><br>
-        <app-paticipants [event]="event" (id)="getID($event)"></app-paticipants>
+        <app-paticipants [event]="event" (id)="getID($event)" (delete)="deleteEvent($event)"></app-paticipants>
     </div>
 </div>
 <div class="container" *ngIf="!isShowList">
-    <app-participant-list [event]="event" (isHideList)="backtToList()" (participants)="addParticipants($event)"></app-participant-list>
+    <app-participant-list [event]="event" (isHideList)="backtToList()" (participants)="addParticipants($event)" (delete)="deleteParticipants($event)"></app-participant-list>
 </div>
 <!-- </div> -->
 

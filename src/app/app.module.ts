@@ -15,6 +15,9 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AdminComponent } from './admin/admin.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
+import { AuthGuard } from './Services/auth.guard';
 
 
 @NgModule({
@@ -25,6 +28,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     ParticipantListComponent,
     FormComponent,
     AddEventFormComponent,
+    AdminComponent,
+    EditEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
     
     
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

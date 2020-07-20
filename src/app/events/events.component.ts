@@ -1,88 +1,84 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Events, Participants } from "../Services/events";
 import { EventsService } from "../Services/events.service";
+import { AuthService } from "../Services/auth.service";
 import { Subscription } from "rxjs";
-import { log } from 'util';
+import { log } from "util";
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  selector: "app-events",
+  templateUrl: "./events.component.html",
+  styleUrls: ["./events.component.scss"]
 })
-export class EventsComponent implements OnInit,OnDestroy {
-  events:Events[];
-  event:Events
+export class EventsComponent implements OnInit, OnDestroy {
+  events: Events[];
+  event: Events;
   isShowList = true;
-  getEventSubscription:Subscription;
-  constructor(
-    private eventService:EventsService
-  ) { }
+  getEventSubscription: Subscription;
+  colors = ""
+  constructor(private eventService: EventsService, private auth:AuthService, private router:Router) {}
 
   ngOnInit() {
-      this.getEventSubscription = this.eventService.getEvents().subscribe(res=>{
-          this.events = res
-      })
+    this.getRandomColor()
+    this.getEventSubscription = this.eventService.getEvents().subscribe(res => {
+      this.events = res;
+    });
+
+    this.auth.currentUserAcc.subscribe(user=>{
+      console.log(user);
+    })
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.getEventSubscription.unsubscribe();
   }
 
-
-
-  getID(data:number){
-    this.events.map(event=>{
-      if(event.id === data){
-        this.event = event
-        this.isShowList = false
+  getID(data: number) {
+    this.events.map(event => {
+      if (event.id === data) {
+        this.event = event;
+        this.isShowList = false;
       }
-    })
-      
+    });
   }
 
-  addParticipants(participant:Participants){
-    this.events.map(res=>{
-      if(res.id === this.event.id){
-        res.participants.push(participant)
-        this.eventService.updateEvent(res)
-      }
-    })
-    
+  addEvent(event: Events) {
+    this.eventService.addEvent(event);
+    console.log(event);
   }
 
-  addEvent(event:Events){
-    this.eventService.addEvent(event)
-    console.log(event)
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    this.colors = color;
   }
-
-  backtToList(){
-    this.isShowList = true;
-  }
-
-  // editEvent(data){
-  //     console.log(data); 
+  // logout(){
+  //   this.auth.updateCurrUser({
+  //     username:'',
+  //     password:''
+  //   })
+  //   this.router.navigate(['/'])
   // }
 
-  deleteEvent(data){
-    const id = this.events.indexOf(data)
-    console.log(id);
-    if(confirm("Are You Sure You Want to Delete this Event?")){
-      this.eventService.deleteEvent(id)
-    }
-    else{
-      alert("Delete is Cancelled")
-    }
-    // this.events.splice(data.id)
-  }
-
-  deleteParticipants(value){
-    const index = this.event.participants.indexOf(value)
-    if(confirm("Are You Sure You Want to Delete this Participant?")){
-      this.event.participants.splice(index)
-      this.eventService.updateEvent(this.event)
-    }else{
-      alert("Delete is Cancelled")
-    }
+  // editEvent(data){
+  //     console.log(data);
+  // }
+  viewEvent(event:Events){
+    console.log(event);
+    this.router.navigate(['/event-details', event.id])
     
   }
-}
 
+  deleteEvent(data) {
+    const id = this.events.indexOf(data);
+    console.log(id);
+    if (confirm("Are You Sure You Want to Delete this Event?")) {
+      this.eventService.deleteEvent(data);
+    } else {
+      alert("Delete is Cancelled");
+    }
+  }
+}

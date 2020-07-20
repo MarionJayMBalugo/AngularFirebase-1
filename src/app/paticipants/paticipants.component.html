@@ -1,25 +1,36 @@
 <div class="container">
-    <div class="card" style="background-color:white" [style.border-top-color]="colors">
-        <div class="card-header">
+<div  *ngIf="event" class="jumbotron" style="border-top-style:solid;border-width: 5px;" [style.border-top-color]='colors'>
+  <div class="jumbotron pointable">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="card-header" style="border-bottom-style:solid;border-width: 5px;" [style.border-bottom-color]='colors'>
             <h1>{{event?.name}}</h1>
+          </div>
         </div>
-        <div class="card-body">
-            <h5>Event Category: {{event?.category}}</h5>
-            <hr>
-            <h5 *ngIf="event.speaker">Event Speaker: {{event?.speaker}}</h5>
-            <hr>
-            <h5 *ngIf="event.emcee">Event Emcee: {{event?.emcee}}</h5>
-            <hr>
-            <h5>Event Time: {{event?.time}}</h5>
-            <hr>
-            <h5>Event Date: {{event?.date}}</h5>
-            <hr>
-            <h5>Event Description: {{event?.description}}</h5>
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-outline-primary" style="float:right" (click)="viewEventList()">View Events List</button>
         </div>
+      </div>
     </div>
-    <button type="button" class="btn btn-outline-primary" (click)="sendId(event.id)">View Participants</button>
-    <div class="btn-group" style="float:right">
-        <!-- <button type="button" class="btn btn-outline-success" (click)="editEvent(event)">Edit Event</button> -->
-        <button type="button" class="btn btn-outline-danger" (click)="deleteEvent(event)">Delete Event</button>
-    </div>
+      <div class="card-body">
+        <h5>Event Category: {{event?.category}}</h5>
+        <hr *ngIf="event?.category">
+        <h5 *ngIf="event?.speaker">Event Speaker: {{event?.speaker}}</h5>
+        <hr *ngIf="event?.speaker">
+        <h5 *ngIf="event?.emcee">Event Emcee: {{event?.emcee}}</h5>
+        <hr>
+        <h5>Event Time: {{event?.time}}</h5>
+        <hr>
+        <h5>Event Date: {{event?.date}}</h5>
+        <hr>
+        <h5>Event Description: {{event?.description}}</h5>
+      </div>
+    <app-participant-list [event]="event?.participants"  (participants)="addParticipants($event)" (delete)="deleteParticipants($event)"></app-participant-list>
+  </div>
+</div>
+</div>
+<div *ngIf="!event">
+    <img src="../../assets/Web-PN_Philippines_AnniversaryLogo_1-copie.png" class="rotate linear infinite image" id="image">
+    <!-- <div class="spinner-border tex-primary"></div> -->
 </div>

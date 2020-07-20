@@ -1,0 +1,24 @@
+<div class="container" style="width:60%;justify-content:center; display: flex; padding-bottom:10vh" >
+    <div class="card rounded shadow shadow-sm" style="width:60%; border-top-width: 7px;border-bottom-width: 7px; " [style.border-top-color]="colors"  [style.border-bottom-color]="colors">
+        <div class="container" style="padding-top:20px;padding-bottom:20px;">
+            <form class="text-center border border-light p-5" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+                <div class="card-header">
+                    <p class="h4 mb-4">Sign in</p>
+                </div>
+                <div>
+                    <input type="text" id="uname" class="form-control mb-3" placeholder="User Name" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                    <div *ngIf="submitted && f.username.errors" class="alert alert-danger">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+                </div>
+                <div>
+                    <input type="password" id="pass" class="form-control mb-3" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <div *ngIf="submitted && f.password.errors" class="alert alert-danger">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div><br>
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

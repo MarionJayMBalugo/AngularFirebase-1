@@ -1,5 +1,6 @@
 <div class="jumbotron">
-    <h2 class="title">{{event.name}}</h2>
+    <!-- <h2 class="title">{{event.name}}</h2> -->
+    <h3>Participants List</h3>
     <div class="card">
         <table class="table">
             <thead>
@@ -11,21 +12,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let each of event.participants">
+                <!-- <h1>{{participants.name}}</h1> -->
+                <tr *ngFor="let each of event">
                     <td>{{each.fullName}}</td>
                     <td>{{each.position}}</td>
                     <td>{{each.company}}</td>
                     <td><button class="btn btn-outline-danger" (click)="deletePart(each)">Delete</button></td>
                 </tr>
-                <!-- <tr *ngFor="let each of participants">
-                <td>{{event.fullName}}</td>
-                <td>{{event.position}}</td>
-                <td>{{event.company}}</td>
-            </tr> -->
             </tbody>
         </table>
     </div>
-    <button class="btn btn-success" (click)="return()">Back</button>
     <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Join</button>
 </div>
 

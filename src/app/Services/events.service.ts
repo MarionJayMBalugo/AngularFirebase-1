@@ -41,12 +41,14 @@ export class EventsService {
       })
   }
   
-  getEvent(){
-    return this.firestore.collection('events').snapshotChanges();
-  }
-
   deleteEvent(data){
-    return this.firestore.collection('events').doc(data).delete()
+    this.eventCollection.ref.where('id','==', data.id).get()
+      .then(res=>{
+        res.forEach(doc =>{
+          this.eventDoc = this.firestore.doc<Events>('events/' + doc.id)
+          this.eventDoc.delete();
+        })
+      })
   }
 
   addEvent(event:Events){
@@ -55,6 +57,17 @@ export class EventsService {
       event.id = res.size;
       return this.eventCollection.add(event)
     })
+  }
+
+  async getEvent(id:number): Promise<Events> {
+    let event: Events;
+    await this.eventCollection.ref.where('id', '==', Number(id)).get()
+      .then(querySnapshot =>{
+        querySnapshot.forEach(doc =>{
+          event = doc.data() as Events
+        })
+      })
+      return event
   }
 
  

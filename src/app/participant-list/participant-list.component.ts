@@ -10,7 +10,6 @@ import { EventsService } from "../Services/events.service";
 })
 export class ParticipantListComponent implements OnInit {
   showModal = false
-  @Output() isHideList = new EventEmitter();
   @Output() participants = new EventEmitter();
   @Output() delete = new EventEmitter();
   @Input() event:any;
@@ -51,11 +50,6 @@ export class ParticipantListComponent implements OnInit {
 
   resetForm(){
     this.partForm.reset()
-  }
-
-  return(){
-      console.log("back")
-      this.isHideList.emit()
   }
 
   getEvent(data){

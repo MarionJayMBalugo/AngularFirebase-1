@@ -1,4 +1,17 @@
 <div>
+    <div>
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark" *ngIf="isLoggedIn | async as loggedIn">
+            <ul class="navbar-nav my-2 my-lg-0 ml-auto">
+                <li class="nav-item active">
+                    <div class="btn-group">
+                        <button class="btn" style="color:white" (click)="logout()" *ngIf="loggedIn">Logout</button>
+                        <!-- <button class="btn" style="color:white">Log</button> -->
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
     <div style="text-align:center">
         <img src="../assets/Web-PN_Philippines_AnniversaryLogo_1-copie.png" style="width:40vh; height:40vh">
     </div>
